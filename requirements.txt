@@ -10,6 +10,7 @@ anemoi-datasets==0.5.26
 anemoi-graphs==0.6.3
 anemoi-inference==0.7.0
 anemoi-models==0.9.3
+anemoi-plugins-ecmwf[all]
 anemoi-plugins-ecmwf-inference==0.1.11
 anemoi-training==0.6.3
 anemoi-transform==0.1.15
