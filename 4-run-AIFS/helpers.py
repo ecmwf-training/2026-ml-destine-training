@@ -6,7 +6,7 @@ LOGGER = logging.getLogger(__name__)
 
 def load_saved_state(file) -> dict:
     # Get the date from the filename: f"inputstate-{date.strftime('%Y%m%d_%H')}.npz"
-    date_str = file.stem.split("-")[1]
+    date_str = file.stem.split("-")[2]
     date = datetime.datetime.strptime(date_str, "%Y%m%d_%H")
 
     with np.load(file, allow_pickle=False) as data:

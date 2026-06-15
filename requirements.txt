@@ -8,7 +8,7 @@ aiosignal==1.4.0
 alembic==1.16.4
 anemoi-datasets==0.5.26
 anemoi-graphs==0.6.3
-anemoi-inference==0.7.0
+anemoi-inference>=0.7.0
 anemoi-models==0.9.3
 anemoi-plugins-ecmwf-inference[all]
 anemoi-training==0.6.3
@@ -85,8 +85,8 @@ earthkit-transforms==0.4.0
 earthkit-utils==0.1.2
 earthkit-workflows==0.4.7
 eccodes==2.43.0
-eccodeslib==2.43.0
-eckitlib==1.31.4
+eccodeslib>=2.43.0
+eckitlib>=1.31.4
 ecmwf-api-client==1.6.5
 ecmwf-datastores-client==0.4.0
 ecmwf-opendata==0.3.22
@@ -95,11 +95,11 @@ entrypoints==0.4
 executing==2.2.0
 fastapi==0.116.1
 fasteners==0.19
-fckitlib==0.14.0
+fckitlib>=0.14.0
 filelock==3.18.0
 findlibs==0.1.2
 fire==0.7.1
-flash-attn @ https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.1.post2/flash_attn-2.7.1.post2+cu12torch2.6cxx11abiFALSE-cp312-cp312-linux_x86_64.whl
+# flash-attn @ https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.1.post2/flash_attn-2.7.1.post2+cu12torch2.6cxx11abiFALSE-cp312-cp312-linux_x86_64.whl
 flask==3.1.2
 flexcache==0.3
 flexparser==0.4
@@ -309,7 +309,7 @@ tiktoken==0.11.0
 timm==1.0.19
 toolz==1.0.0
 torch==2.6.0
-torch-cluster>=1.6.3
+# torch-cluster>=1.6.3
 torch-geometric==2.6.1
 torchinfo==1.8.0
 torchmetrics==1.8.0
