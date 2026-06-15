@@ -19,7 +19,7 @@ profiler: False
 enable_checkpointing: True
 checkpoint:
   every_n_minutes:
-    save_frequency: 30 # Approximate, as this is checked at the end of training steps
+    save_frequency: null # Approximate, as this is checked at the end of training steps
     num_models_saved: 3 # If set to k, saves the 'last' k model weights in the training.
 
   every_n_epochs:
@@ -47,7 +47,7 @@ log:
     offline: True
     authentication: False
     tracking_uri: null
-    experiment_name: 'anemoi-training'
+    experiment_name: ${oc.env:USER}-training
     project_name: 'Anemoi'
     system: False
     terminal: True

@@ -5,8 +5,8 @@ defaults:
 - datamodule: single
 - diagnostics: evaluation
 - hardware: example
-- graph: multi_scale
-- model: graphtransformer
+- graph: encoder_decoder_only
+- model: transformer
 - training: default
 - _self_
 
@@ -17,7 +17,7 @@ config_validation: True
 hardware:
   paths:
     data: /datasets/
-    output: /home/student/anemoi-output/
+    output: /home/${oc.env:USER}/anemoi-output/
   files:
     dataset: aifs-ea-an-oper-0001-mars-o48-2010-2022-6h-v1-toy.zarr
   accelerator: auto

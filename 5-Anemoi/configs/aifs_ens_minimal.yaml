@@ -4,8 +4,8 @@ defaults:
 - datamodule: ens
 - diagnostics: evaluation
 - hardware: example
-- graph: multi_scale
-- model: graphtransformer_ens
+- graph: encoder_decoder_only
+- model: transformer_ens
 - training: ensemble
 - _self_
 
@@ -15,7 +15,7 @@ config_validation: True
 hardware:
   paths:
     data: /datasets/
-    output: /home/student/aifs/
+    output: /home/${oc.env:USER}/anemoi-output/
   files:
     dataset: aifs-ea-an-oper-0001-mars-o48-2010-2022-6h-v1-toy.zarr
   accelerator: auto
@@ -64,15 +64,7 @@ model:
 
   # Processor with conditional layer norm
   processor:
-    _target_: anemoi.models.layers.processor.GraphTransformerProcessor
-    trainable_size: ${model.trainable_parameters.hidden2hidden}
-    sub_graph_edge_attributes: ${model.attributes.edges}
-    num_layers: 16
-    num_chunks: 2
-    mlp_hidden_ratio: 4 # GraphTransformer or Transformer only
-    num_heads: 16 # GraphTransformer or Transformer only
-    qk_norm: True # Transformer and GraphTransformer only
-    cpu_offload: ${model.cpu_offload}
+    num_layers: 8
     layer_kernels:
       LayerNorm:
         _target_: anemoi.models.layers.normalization.ConditionalLayerNorm
@@ -80,17 +72,6 @@ model:
         condition_shape: ${model.noise_injector.noise_channels_dim}
         w_one_bias_zero_init: True
         autocast: false
-      Linear:
-        _target_: torch.nn.Linear
-      Activation:
-        _target_: torch.nn.GELU
-      QueryNorm:
-        _target_: anemoi.models.layers.normalization.AutocastLayerNorm
-        bias: False
-      KeyNorm:
-        _target_: anemoi.models.layers.normalization.AutocastLayerNorm
-        bias: False
-
 
 # Training configuration for ensemble CRPS training
 training:
@@ -131,15 +112,11 @@ training:
 
 # Diagnostics configuration
 diagnostics:
-  profiler: False
-  enable_progress_bar: True
   callbacks: []
   plot:
     callbacks: []
   log:
     mlflow:
-      enabled: True
-      offline: True
-      tracking_uri: ${hardware.paths.output}/logs
-      experiment_name: 'ml-taining-course'
-      run_name: 'aifs-ens-training' 
+      system: True
+      experiment_name: ${oc.env:USER}-ens-training
+
